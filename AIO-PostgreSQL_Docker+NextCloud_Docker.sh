@@ -133,14 +133,14 @@ else
         -e TZ=Asia/Singapore \
         -v /home/ncD/pgData:/var/lib/postgresql/data \
         --name NextCloudDB \
-        postgres:alpine
+        postgres:16.0-alpine3.18
 
     docker run -d \
         --restart=unless-stopped \
         --network=NextCloudLAN \
         -e TZ=Asia/Singapore \
         --name NextCloudCACHE \
-        redis:alpine
+        redis:7.2.3-alpine3.18
 
     docker run -d \
         --restart=unless-stopped \
@@ -159,7 +159,7 @@ else
         -e REDIS_HOST=NextCloudCACHE \
         -e TZ=Asia/Singapore \
         --name NextCloudIns \
-        nextcloud:latest
+        nextcloud:27.1.3-apache
 
 
     # Thankfully borrowed from https://stackoverflow.com/a/37410430
