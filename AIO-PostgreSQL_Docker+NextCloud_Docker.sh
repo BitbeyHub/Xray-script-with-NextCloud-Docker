@@ -100,7 +100,7 @@ fi
 
 # start of the script
 rm -rf /home/ncD
-apt update && apt --no-install-recommends -y install wget curl ca-certificates openresolv wireguard wireguard-tools vnstat unzip
+apt update && apt --no-install-recommends -y install wget curl ca-certificates vnstat unzip  # openresolv wireguard wireguard-tools
 
 # You need to modify the /etc/vnstat.conf according to https://doc.ssr.rs/vnstat
 # Then run "systemctl restart vnstat"
