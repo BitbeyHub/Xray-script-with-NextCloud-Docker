@@ -172,10 +172,12 @@ fi
 
 ## Install Caddy reverse proxy server
 # assume this is Debian/Ubuntu and use apt as package manager
-# apt install -y debian-keyring debian-archive-keyring apt-transport-https curl
-curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
-curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | tee /etc/apt/sources.list.d/caddy-stable.list
-# Borrowed from https://caddyserver.com/docs/install#debian-ubuntu-raspbian
+if version_ge 6 $your_kernel_version; then
+	apt install -y debian-keyring debian-archive-keyring apt-transport-https curl
+	curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+	curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | tee /etc/apt/sources.list.d/caddy-stable.list
+	# Borrowed from https://caddyserver.com/docs/install#debian-ubuntu-raspbian
+fi
 apt update -qq && apt install -y caddy
 
 cat > /etc/caddy/Caddyfile << EOF
