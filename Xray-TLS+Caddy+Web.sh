@@ -171,6 +171,9 @@ fi
 apt update -qq && apt install -y caddy
 
 cat > /etc/caddy/Caddyfile << EOF
+{
+	admin off
+}
 $sslDomain {
 	reverse_proxy $path unix/@/virtualpath/xray/ws.sock
 
